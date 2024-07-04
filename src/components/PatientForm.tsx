@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import Error from "./Error";
 import { PatientDraft } from "../types";
+import { usePatientStore } from "../store/usePatient";
 
 const PatientForm = () => {
   const {
@@ -9,7 +10,10 @@ const PatientForm = () => {
     formState: { errors },
   } = useForm<PatientDraft>();
 
-  const registerPatient = (data: PatientDraft) => {};
+  const addPatient = usePatientStore((state) => state.addPatient);
+  const registerPatient = (data: PatientDraft) => {
+    addPatient(data);
+  };
   return (
     <div className="md:w-1/2 lg:w-2/5 mx-5">
       <h2 className="font-black text-3xl text-center">Seguimiento Pacientes</h2>
