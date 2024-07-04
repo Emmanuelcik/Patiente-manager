@@ -1,14 +1,15 @@
 import { useForm } from "react-hook-form";
 import Error from "./Error";
+import { PatientDraft } from "../types";
 
 const PatientForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<PatientDraft>();
 
-  const registerPatient = () => {};
+  const registerPatient = (data: PatientDraft) => {};
   return (
     <div className="md:w-1/2 lg:w-2/5 mx-5">
       <h2 className="font-black text-3xl text-center">Seguimiento Pacientes</h2>
@@ -34,7 +35,7 @@ const PatientForm = () => {
             placeholder="Patient name"
             {...register("name", { required: "Please enter a name" })}
           />
-          {errors.name && <Error>{errors.name?.message?.toString()}</Error>}
+          {errors.name && <Error>{errors.name?.message}</Error>}
         </div>
 
         <div className="mb-5">
@@ -48,9 +49,7 @@ const PatientForm = () => {
             placeholder="Caretaker name"
             {...register("caretaker", { required: "Please enter a Caretaker" })}
           />
-          {errors.caretaker && (
-            <Error>{errors.caretaker?.message?.toString()}</Error>
-          )}
+          {errors.caretaker && <Error>{errors.caretaker?.message}</Error>}
         </div>
 
         <div className="mb-5">
@@ -70,7 +69,7 @@ const PatientForm = () => {
               },
             })}
           />
-          {errors.email && <Error>{errors.email?.message?.toString()}</Error>}
+          {errors.email && <Error>{errors.email?.message}</Error>}
         </div>
 
         <div className="mb-5">
@@ -83,7 +82,7 @@ const PatientForm = () => {
             type="date"
             {...register("date", { required: "Please enter a discharge date" })}
           />
-          {errors.date && <Error>{errors.date?.message?.toString()}</Error>}
+          {errors.date && <Error>{errors.date?.message}</Error>}
         </div>
 
         <div className="mb-5">
@@ -96,9 +95,7 @@ const PatientForm = () => {
             placeholder="Patient Symptoms"
             {...register("symptoms", { required: "Symptoms are required" })}
           />
-          {errors.symptoms && (
-            <Error>{errors.symptoms?.message?.toString()}</Error>
-          )}
+          {errors.symptoms && <Error>{errors.symptoms?.message}</Error>}
         </div>
 
         <input
