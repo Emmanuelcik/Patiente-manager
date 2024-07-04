@@ -10,7 +10,7 @@ type PatientState = {
 const createPatient = (patient: PatientDraft): Patient => {
   return { ...patient, id: uuidv4() };
 };
-export const usePatientStore = create<PatientState>((set, get) => ({
+export const usePatientStore = create<PatientState>((set) => ({
   patients: [],
   addPatient: (patient) => {
     const newPatient = createPatient(patient);
