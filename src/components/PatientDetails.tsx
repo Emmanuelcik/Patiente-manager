@@ -8,7 +8,7 @@ type PatientDetailsProps = {
 
 const PatientDetails = ({ patient }: PatientDetailsProps) => {
   const deletePatient = usePatientStore((state) => state.deletePatient);
-  // const {} = usePatientStore(state => state)
+  const getPatientById = usePatientStore((state) => state.getPatientById);
   return (
     <div className="mx-5 my-10 px-5 py-10 bg-white shadow-md rounded-xl">
       <PatientDetailItem label={"ID"} value={patient.id} />
@@ -18,8 +18,11 @@ const PatientDetails = ({ patient }: PatientDetailsProps) => {
       <PatientDetailItem label={"Date"} value={patient.date.toString()} />
       <PatientDetailItem label={"Symptoms"} value={patient.symptoms} />
 
-      <div className="flex justify-between mt-10">
-        <button className="py-2 px-10 bg-indigo-600 hover:bg-indigo-700 text-white font-bold uppercase rounded-lg">
+      <div className="flex justify-between mt-10 flex-col md:flex-row gap-3">
+        <button
+          className="py-2 px-10 bg-indigo-600 hover:bg-indigo-700 text-white font-bold uppercase rounded-lg"
+          onClick={() => getPatientById(patient.id)}
+        >
           Edit
         </button>
         <button
